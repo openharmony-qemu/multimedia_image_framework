@@ -4255,7 +4255,8 @@ napi_value ImageSourceNapi::ReadImageMetadataByType(napi_env env, napi_callback_
     napi_status status;
     std::unique_ptr<ImageSourceAsyncContext> asyncContext = UnwrapContextForReadImageMetadataByType(env, info);
     if (asyncContext == nullptr) {
-        return ImageNapiUtils::ThrowExceptionError(env, IMAGE_SOURCE_INVALID_PARAMETER, "async context unwrap failed");
+        return ImageNapiUtils::ThrowExceptionError(env, IMAGE_SOURCE_INVALID_PARAMETER,
+            "async context unwrap failed", true);
     }
 
     if (asyncContext->callbackRef == nullptr) {

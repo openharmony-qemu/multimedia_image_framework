@@ -47,6 +47,7 @@ public:
     static napi_value InitWebPMetadata(napi_env env, napi_value exports);
     static napi_value InitPngMetadata(napi_env env, napi_value exports);
     static napi_value InitAvisMetadata(napi_env env, napi_value exports);
+    static napi_value InitRecordMetadata(napi_env env, napi_value exports);
     static napi_value CreateMetadata(napi_env env, std::shared_ptr<ImageMetadata> metadata);
     static napi_value CreateExifMetadata(napi_env env, std::shared_ptr<ImageMetadata> metadata);
     static napi_value CreateMakerNoteMetadata(napi_env env, std::shared_ptr<ImageMetadata> metadata);

@@ -460,6 +460,14 @@ bool SvgDecoder::BuildDom()
     CHECK_ERROR_RETURN_RET_LOG(cond, false, "[BuildDom] DOM is null.");
 
     svgSize_ = svgDom_->containerSize();
+    if (svgSize_.isEmpty() && svgDom_->getRoot() != nullptr &&
+        svgDom_->getRoot()->getViewBox().isValid() && !svgDom_->getRoot()->getViewBox()->isEmpty()) {
+        const auto &viewBox = svgDom_->getRoot()->getViewBox();
+        svgSize_ = SkSize::Make(viewBox->width(), viewBox->height());
+        svgDom_->getRoot()->setWidth(SkSVGLength(svgSize_.width()));
+        svgDom_->getRoot()->setHeight(SkSVGLength(svgSize_.height()));
+        svgDom_->setContainerSize(svgSize_);
+    }
     cond = svgSize_.isEmpty();
     CHECK_ERROR_RETURN_RET_LOG(cond, false, "[BuildDom] size is empty.");
 
